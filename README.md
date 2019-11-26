@@ -1,2 +1,3 @@
 # mlg
-Trabalho sobre Modelo Lineares Generalizados
+Trabalho sobre Modelo Lineares Generalizados...
+Apresentação de um artigo.

@@ -1,0 +1,72 @@
+---
+title: "Modelos Lineares Generalizados"
+subtitle: "Mortalidade Infantil no Brasil"
+author: Douglas Vinícius G. Araújo
+institute: Universidade Federal de Rondônia
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+fontsize: 9pt
+output:
+  beamer_presentation:
+    theme: "Madrid"
+    colortheme: "whale"
+    fonttheme: "structurebold"
+    incremental: false
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(message = FALSE, 
+                      warning = FALSE, 
+                      echo = FALSE, 
+                      fig.align = 'center')
+library(RefManageR)
+library(tidyverse)
+
+bibs <- ReadBib("bibliography.bib", check = FALSE)
+```
+
+## Partes
+
+- Introdução
+- Objetivo
+- Material e Métodos
+  - Modelos Lineares Generalizados
+- Resultados
+- Conclusões
+- Referências
+
+
+## Introdução
+
+
+
+## Objetivo
+
+Objetiva-se assim, realizar uma modelagem das Taxas de Mortalidade Infantil para os Estados brasileiros aplicando a teoria dos MLG com referência ao ano de 2006, utilizando variáveis determinates da mortalidade infantil.
+
+## Material e Métodos
+
+Os dados foram coletados das fontes:
+
+- DATASUS do Ministério da Saúde (Taxa de Mortalidade Infantil); e 
+
+- IBGE (Taxa de analfabetismo, Cobertura de esgotamento sanitário e Proporção de pobres). 
+
+As observações foram os 26 estados da federação e Distrito Federal.
+
+### Modelo Lineares Generalizados
+
+
+## Conclusões
+
+## Referências
+```{r, results='asis'}
+print(bibs[key = c("cor-dem", "IBGE", "monteiro2000evoluccao",
+                  "nelder1972generalized", "rosano2000infant",
+                  "teixeira2006analise")], 
+      .opts = list(check.entries = FALSE, 
+                   style = "latex", 
+                   bib.style = "authoryear"))
+```
