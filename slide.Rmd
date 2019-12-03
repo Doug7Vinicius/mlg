@@ -1,9 +1,9 @@
 ---
 title: "Modelos Lineares Generalizados"
 subtitle: "Mortalidade Infantil no Brasil"
-author: Douglas Vinícius G. Araújo
+author: Douglas Vinícius
 institute: Universidade Federal de Rondônia
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "03 de Dezembro de 2019"
 fontsize: 9pt
 output:
   beamer_presentation:
@@ -16,7 +16,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-options(htmltools.dir.version = FALSE)
+options(tinytex.verbose = TRUE)
 knitr::opts_chunk$set(message = FALSE, 
                       warning = FALSE, 
                       echo = FALSE, 
@@ -40,7 +40,18 @@ bibs <- ReadBib("bibliography.bib", check = FALSE)
 
 ## Introdução
 
+A Taxa de Mortalidade Infantil (TMI) evidencia, de maneira geral, o nível de vida e saúde e desenvolvimento socioeconômico de uma determinada região, sendo considerada um dos mais importantes indicadores epidemiológicos utilizados internacionalmente (MONTEIRO & NAZÁRIO, 2000).
 
+Houve, portanto uma considerável redução de 62% na mortalidade de crianças até cinco anos
+e 59% na mortalidade de crianças de até um ano, sendo a 18ª maior diminuição no índice entre todos os países. Os fatores determinantes dessa redução devem-se a melhoria das condições de vida, além de políticas voltadas a saúde infantil e desenvolvimento socioeconômico. Isso se deve ao fato da Taxa de Mortalidade Infantil ser o vértice das principais metas na área de saúde em diversos países (ROSANO et al., 2000).
+
+
+## Introdução
+
+Portanto fazer uma modelagem a fim de Conhecer o perfil da Mortalidade Infantil é fundamental para a formulação de estratégias que permitam o seu controle, utilizando variáveis consideradas como fatores de risco e que sejam explicativas dessa taxa, para que possa ajudar, na tomada de decisões em projetos e planejamento das políticas de saúde infantil.
+
+A modelagem das Taxas de Mortalidade Infantil dos Estados brasileiros em 2006 foi realizada
+por meio dos Modelos Lineares Generalizados (MLG). Considerado entre os Estatísticos uma ferramenta bastante eficiente, pois esses modelos não se restringem apenas à suposição de normalidade da variável resposta, sendo esta suposição ampliada para uma distribuição pertencente à família exponencial, tornando a modelagem mais flexível para diversos tipos de dados.
 
 ## Objetivo
 
@@ -56,10 +67,68 @@ Os dados foram coletados das fontes:
 
 As observações foram os 26 estados da federação e Distrito Federal.
 
-### Modelo Lineares Generalizados
+## Material e Métodos
+
+### Modelos Lineares Generalizados
+
+Os Modelos Lineares Generalizados foram introduzidos por \cite{}Nelder e Wedderburn (1972), cujos modelos são usados geralmente quando se tem uma única variável aleatória $\textbf{Y}$ associada a um conjunto de variáveis explanatórias $x_1,...,x_p$. O **MLG** é composto por três componentes \cite{}(CORDEIRO & DEMÉTRIO, 2007).
+
+*i)* Componente aleatório: representado por um conjunto de variáveis aleatórias independentes $y_1,..., y_n$ provenientes de uma mesma distribuição que faz parte da família exponencial de distribuições com médias $\mu_1,...,\mu_n$, ou seja,
+
+\begin{equation}\label{equation1}
+  E(y_i) = \mu_i, \ \ i = 1,...,n.
+\end{equation}
+
+em que $\phi > 0$ um parâmetro de dispersão e o parâmetro $\theta_i$ denominado parâmetro canônico. Então, a função de densidade de probabilidade de $Y_i$ é dada por:
+
+\begin{equation}\label{equation2}
+  f(y_i;\theta_i,\phi) = exp\{\phi^{-1}[y_i\theta_i - b(\theta_i)]+c(y_i,\phi)\}
+\end{equation}
+
+\noindent $b(.)$ e $c(.)$ funções conhecidas.
+
+## Material e Métodos
+
+### Modelos Lineares Generalizados
+
+*ii)* Componente sistemático: as variáveis explicativas entram na forma de uma soma linear de seus efeitos
+
+\begin{equation}\label{equation3}
+  \eta_i = \sum_{r=1}^{p} x_{ir}\beta_j = x_i^t\beta \ \ ou \ \ \eta = X\beta
+\end{equation}
+
+\noindent em que $X = (x_1,..., x_n)^t$ a matriz do modelo,$\beta=(\beta_1,...,\beta_n)^t$ o vetor de parâmetros e $\eta=(\eta_1,...,\eta_n)^t$ o preditor linear.
+
+*iii)* Função de ligação: uma função que relaciona o componente aleatório ao componente sistemático, ou seja, vincula a média ao preditor linear, isto é,
+
+\begin{equation}
+  \eta_i = g(\mu_i)
+\end{equation}
+
+\noindent sendo $g(.)$ uma função monótona diferenciável.
+
+Para verificar se um modelo é adequado, temos que analisar se as pressuposições feitas para o desenvolvimento do modelo não estão sendo violadas. Para o melhor modelo iremos resaltar basicamente métodos gráficos, especificamente os gráficos das médias ajustadas versus valores observados, bem como os resíduos de Pearson versus os valores ajustados.
+
+## Resultados 
+
+Inicialmente verificou-se assimetria dos dados, a natureza contínua e o intervalo positivo de variação, características nas quais sugerem que a distribuição dos dados segue o modelo Gamma ou Normal Inverso. No entanto, o modelo Gamma não ajustou-se adequadamente aos dados.
+
+Para ajustarmos o modelo Normal Inverso com função de ligação logarítmica a esses dados,
+assumiremos que $y_1,...,y_27$ são independentes e seguem uma distribuição Normal Inversa com média $\mu_t$, $t = 1,...,27$, e parâmetro de dispersão $\phi$ desconhecido.
+
+Em seguida, as estimativas dos parâmetros mostraram que todas as variáveis foram significativas, produzindo um desvio residual na magnitude de 0,010 e AIC (Critério de Informação de Akaike) de 120,47. Relizou-se a análise de diagnóstico deste ajuste e verificou-se que as observações 3, 4, 6, 7, 9, 15 e 19 referentes aos Estados do Amazonas, Roraima, Amapá, Tocantins, Piauí, Sergipe e Rio de Janeiro, respectivamente, se configuraram como atípicas. Essas observações foram retiradas e o modelo foi novamente ajustado.
+
+A retirada das observações melhorou significativamente o ajuste do modelo, reduzindo o Erro
+Padrão e o p-valor relacionado ao parâmetro de cada variável, assim como reduziu o desvio residual (0,003) e o AIC (74,75). As estimativas encontram-se na Tabela 1.
 
 
 ## Conclusões
+
+A teoria dos MLG mostrou-se uma ferramenta bastante eficaz para modelagem das Taxas de Mortalidade Infantil explicada por indicadores socioeconômicos nos Estados brasileiros referenciando o ano de 2006. Permitindo assim, ajustar os dados por meio do modelo Normal Inverso com ligação logarítmica.
+
+Foi possível verificar que a diminuição da mortalidade infantil está diretamente relacionada com o aumento da Cobertura de esgotamento sanitário, com a redução da Taxa de analfabetismo e com a diminuição da Proporção de pobres na população.
+
+Espera-se que este estudo possa contribuir para definição de estratégias que reduzam a mortalidade infantil nos estados brasileiros, subsidiando o planejamento e delimitando políticas públicas nas áreas de saúde materna e infantil. Fazendo com que a TMI no Brasil, atinja um patamar ideal, isto é, próxima das taxas dos países desenvolvidos.
 
 ## Referências
 ```{r, results='asis'}
