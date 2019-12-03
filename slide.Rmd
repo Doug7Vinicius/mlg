@@ -1,6 +1,6 @@
 ---
-title: "Modelos Lineares Generalizados"
-subtitle: "Mortalidade Infantil no Brasil"
+title: "Modelo para Mortalidade Infantil no Brasil via Modelos Lineares Generalizados"
+subtitle: "Carlos S. A. dos Santos, Alisson de O. Silva, Joseilme F. Gouveia, Gauss M. Cordeiro"
 author: Douglas Vinícius
 institute: Universidade Federal de Rondônia
 date: "03 de Dezembro de 2019"
@@ -119,8 +119,59 @@ assumiremos que $y_1,...,y_27$ são independentes e seguem uma distribuição No
 Em seguida, as estimativas dos parâmetros mostraram que todas as variáveis foram significativas, produzindo um desvio residual na magnitude de 0,010 e AIC (Critério de Informação de Akaike) de 120,47. Relizou-se a análise de diagnóstico deste ajuste e verificou-se que as observações 3, 4, 6, 7, 9, 15 e 19 referentes aos Estados do Amazonas, Roraima, Amapá, Tocantins, Piauí, Sergipe e Rio de Janeiro, respectivamente, se configuraram como atípicas. Essas observações foram retiradas e o modelo foi novamente ajustado.
 
 A retirada das observações melhorou significativamente o ajuste do modelo, reduzindo o Erro
-Padrão e o p-valor relacionado ao parâmetro de cada variável, assim como reduziu o desvio residual (0,003) e o AIC (74,75). As estimativas encontram-se na Tabela 1.
+Padrão e o p-valor relacionado ao parâmetro de cada variável, assim como reduziu o desvio residual (0,003) e o AIC (74,75). As estimativas encontram-se na Figura 1.
 
+## Resultados 
+
+\begin{figure}
+  \centering
+  \caption{Estimativas dos parâmetros do modelo Normal Inverso com função de ligação logaritmica ajustado para os dados de TMI sem as observações (3, 4, 6, 7, 9, 15 e 19).}
+  \includegraphics[scale=0.45]{tabela1}
+\end{figure}
+
+## Resultados 
+
+O gráfico de probabilidade meio-normal com envelope simulado (Figura 2), mostra que todos os pontos se encontram dentro da banda de confiança, indicando um bom ajuste dos dados.
+
+\begin{figure}
+  \centering
+  \caption{Percentil da Normal(0,1)}
+  \includegraphics[scale=0.40]{figura1}
+\end{figure}
+
+
+## Resultados 
+
+A Figura 2(a) o gráfico de dispersão dos valores observados versus médias ajustadas. Observa-se através da figura que os pontos apresentam-se de forma linear, indicando que os dados foram bem ajustados. Além disso, na Figura 2(b), os resíduos de Pearson apresentaram uma distribuição aleatória quando feita a sua dispersão versus os valores ajustados, indicando assim, que os resíduos são não correlacionados, ou seja, hipótese de independência e variância constante para os resíduos são aceitas.
+
+\begin{figure}
+  \centering
+  \caption{Gráficos de verificação da qualidade do ajuste.}
+  \includegraphics[scale=0.40]{figura2}
+\end{figure}
+
+
+## Resultados 
+
+A partir das estimativas dos parâmetros do modelo Normal Inverso com ligação logarítmica,
+pode-se agora, escrever o modelo ajustado.
+\begin{equation}
+  \hat{\mu} = exp\{2,48188 - 0,00229x_{t1} + 0,00944x_{t2} + 0,03714x_{t3}\}
+\end{equation}
+
+
+\noindent em que $\beta_0 = 2,48188$ corresponde ao intercepto, $x_{t1}$ representa a Cobertura de esgotamento sanitário, $x_{t2}$ a Proporção de pobres e $x_{t3}$ a Taxa de analfabetismo , sendo $t$ o respectivo Estado.
+
+A estimativa do parâmetro referente a variável Cobertura de esgotmento sanitário $(-0,00229)$, apresenta uma relação inversa com a TMI, ou seja, o aumento da cobertura de esgotamento sanitário nos estados, implica em diminuição da TMI naquela região. Teixeira & Guilhermino (2006) também comprovam essa relação.
+
+##
+
+A segunda estimativa está relacionada com a variável Proporção de pobres, variável na qual teve sua estimativa do parâmetro de 0,00944. Essa estimativa significa que, para cada unidade positiva da Proporção de pobres, a TMI aumenta em $0,944%$.
+
+Por último, tem-se a Taxa de analfabetismo. Esse parâmetro nos informa que para cada unidade positiva da Taxa de analfabetismo, a TMI cresce na magnitude de $0,03714$. A redução do analfabetismo contribui para a queda da mortalidade infantil, uma vez que, indivíduos com o baixo nível de instrução, sugerem que esses mesmos detêm um baixo nível de informação sobre os cuidados com a saúde e higiene pessoal.
+
+Nesse estudo o modelo apresentado para explicar os componentes da mortalidade infantil nos
+estados brasileiros foram expressos como combinações lineares entre indicadores socioeconômicos. A relação de causa e consequência não está perfeitamente caracterizada, sendo preferível o termo “possíveis determinantes” para as variáveis utilizadas no ajuste. Porém, em MLG, um modelo parcimonioso é, também, uma exigência, no sentido de que o número de parâmetros seja tão pequeno quanto possível (CORDEIRO & DEMÉTRIO, 2007).
 
 ## Conclusões
 
